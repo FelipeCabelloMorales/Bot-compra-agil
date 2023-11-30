@@ -30,7 +30,6 @@ driver = webdriver.Chrome(options=chrome_options)
 url = 'https://www.mercadopublico.cl'
 driver.get(url)
 
-sleep(3)
 
 elemento = WebDriverWait(driver, 3).until(
 EC.presence_of_element_located((By.XPATH, '//*[@id="encabezado"]/nav/div[2]/div[1]/div/button'))
@@ -41,23 +40,18 @@ sleep(1)
 clave_unica = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, '//*[@id="zocial-oidc"]'))
 )
 clave_unica.click()
-sleep(1)
 
 input1=WebDriverWait(driver,3).until(EC.presence_of_element_located((By.ID,'uname')))
 
 input1.send_keys("181747919")
-sleep(1)
 
 input2=WebDriverWait(driver,3).until(EC.presence_of_element_located((By.ID,'pword')))
 input2.send_keys("Seba@2022")
-sleep(1)
 
 WebDriverWait(driver,3).until(EC.presence_of_element_located((By.XPATH,'//*[@id="login-submit"]')))
-sleep(1)
 
 click_login =WebDriverWait(driver,3).until(EC.presence_of_element_located((By.ID,'login-submit')))
 click_login.click()
-sleep(2)
 
 modal = "#rdbOrg1556732"
 elemento2 = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.CSS_SELECTOR, modal)))
@@ -67,12 +61,10 @@ solanch.click()
 
 ingresar=WebDriverWait(driver,3).until(EC.presence_of_element_located((By.XPATH,'//*[@id="myModal"]/div/div/div[3]/a')))
 ingresar.click()
-sleep(2)
 
 # Modulo Compra Agil
 compra_agil=WebDriverWait(driver,3).until(EC.presence_of_element_located((By.XPATH,'//*[@id="mnuPrincipaln6"]/table/tbody/tr/td/a')))
 compra_agil.click()
-sleep(2)
 
 
 wait = WebDriverWait(driver, 3)
@@ -81,13 +73,11 @@ driver.switch_to.frame(wait.until(EC.visibility_of_element_located((By.ID,"fraDe
 
 check_box=WebDriverWait(driver,3).until(EC.presence_of_element_located((By.XPATH,'//*[@id="panel2a-content"]/div/label[2]/span[1]/span/input')))
 check_box.click()
-sleep(2)
 
 #Analizar la cantidad de filas existentes
 filas = driver.find_elements(By.CLASS_NAME, 'Cardstyles__Content-sc-ssikjk-2.larVNz')
 cantidad_elementos = len(filas)
 print("Cantidad de elementos con la clase especificada:", cantidad_elementos)
-sleep(2)
 
 contadorPagina=1
 contador = 1
