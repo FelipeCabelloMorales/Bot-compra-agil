@@ -30,12 +30,12 @@ driver = webdriver.Chrome(options=chrome_options)
 url = 'https://www.mercadopublico.cl'
 driver.get(url)
 
+sleep(3)
 
 elemento = WebDriverWait(driver, 3).until(
 EC.presence_of_element_located((By.XPATH, '//*[@id="encabezado"]/nav/div[2]/div[1]/div/button'))
 )
 elemento.click()
-sleep(1)
 
 clave_unica = WebDriverWait(driver, 3).until(EC.presence_of_element_located((By.XPATH, '//*[@id="zocial-oidc"]'))
 )
@@ -246,7 +246,8 @@ for z in range(1,numeroPagina +1):
 
             try:
                 conexion = mysql.connector.connect(**configuracion)
-                print("Conectado a la base de datos ","("+str(conexion.connection_id)+")")
+                print(f'Conectado a la base de datos {configuracion["database"]}',"("+str(conexion.connection_id)+")")
+                
                 sql= "compraAgil_insertarDatosNest"
                 cursor = conexion.cursor()
                 
@@ -266,7 +267,8 @@ for z in range(1,numeroPagina +1):
                 """
                 
                 cursor.callproc("compraAgil_insertarDatosNest", (NumeroCotizacion, Nombre, Descripcion, Direccion, PlazoEntrega, Presupuesto, Fecha, FechaCierre, Archivos))
-
+                
+                #Confirmar Los cambios
                 conexion.commit()
                 
             except mysql.connector.Error as e:
